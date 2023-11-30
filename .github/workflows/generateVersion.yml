@@ -15,6 +15,3 @@ jobs:
 
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.1.0
-
-      - name: Echo Version
-        run: echo "$MAJOR" + "$MINOR" + "PATCH"
