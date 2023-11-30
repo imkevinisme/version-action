@@ -15,12 +15,4 @@ jobs:
 
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.1.0
-        with:
-          name:
 
-      - name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@v1.2.2
-        with:
-          name: "marcDataDiagram.json"
-          json: "{}"
