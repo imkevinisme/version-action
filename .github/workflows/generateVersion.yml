@@ -2,7 +2,6 @@ name: Get Version
 
 on:
   release:
-    types: [published]
 
 jobs:
   test:
@@ -21,3 +20,16 @@ jobs:
 
       - name: Echo Release Date
         run: echo "Release Date = ${{ env.DATE }}"
+
+      - name: If file Exist
+        if: ${{ hashFiles('version.json') != '' }}
+        run: echo "`jq '.Version=${{env.VERSION}} .Date=${{env.DATE}}' version.json`" > version.json
+
+      - name: If file Not Exist
+        if: ${{ hashFiles('version.json') == '' }}
+        uses: schdck/create-env-json@v1
+        id: create-env
+        with:
+          file: "version.json"
+          Version: ${{ env.VERSION }}
+          Date: ${{ env.DATE }}
