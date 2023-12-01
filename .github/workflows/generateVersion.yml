@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VERSION: ${{github.event.release.tag_name}}
-      DATE: ${{github.event.release.created_at}}
+      VERSION: ${{github.ref_name}}
+      DATE: ${{github.event.pusher.date}}
 
     steps:
       - name: Checkout
