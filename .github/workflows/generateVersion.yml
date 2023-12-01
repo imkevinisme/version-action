@@ -2,19 +2,21 @@ name: Get Version
 
 on:
   push:
-    tags:
-      - "v*.*.*"
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{github.event.release.tag_name}}
+      DATE: ${{github.event.release.created_at}}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Echo Tag Name
-        run: echo "Tag Name = ${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+        run: echo "Tag Name = ${{ env.VERSION }}"
 
       - name: Echo Release Date
-        run: echo "Release Date = ${{ github.event.release.created_at }}" >> $GITHUB_ENV
+        run: echo "Release Date = ${{ env.DATE }}"
