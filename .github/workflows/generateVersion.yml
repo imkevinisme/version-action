@@ -2,7 +2,8 @@ name: Get Version
 
 on:
   push:
-  release:
+    tags:
+      - "v*.*.*"
 
 jobs:
   test:
@@ -12,7 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Echo information
-        run: |
-          echo "Tag Name = ${{ github.event.release.name }}" >> $GITHUB_ENV
-          echo "Tag Name = ${{ github.event.release.created_at }}" >> $GITHUB_ENV
+      - name: Echo Tag Name
+        run: echo "Tag Name = ${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+
+      - name: Echo Release Date
+        run: echo "Release Date = ${{ github.event.release.created_at }}" >> $GITHUB_ENV
