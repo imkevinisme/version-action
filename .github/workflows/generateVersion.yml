@@ -1,15 +1,16 @@
 name: Get Version
 
 on:
-  push:
+  release:
+    types: [published]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     env:
-      VERSION: ${{github.env}}
-      DATE: ${{github.env}}
+      VERSION: ${{github.event.release.tag_name}}
+      DATE: ${{github.event.release.created_at}}
 
     steps:
       - name: Checkout
